@@ -1,0 +1,314 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.incident-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #09A509;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-primary {
+  background: #09A509;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-primary:hover {
+  background: #078707;
+}
+
+.btn-secondary:hover {
+  background: #545b62;
+}
+
+/* Tabs / incidents styling */
+.incidents-tabs {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: white; /* match profile window */
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.create-incident-page {
+  position: relative;
+}
+
+.create-actions {
+  position: absolute;
+  right: 5%;
+  top: 1.25rem;
+}
+
+.create-actions .btn-primary {
+  padding: 0.6rem 1rem;
+  font-size: 1.05rem; /* increased size per request */
+}
+
+.page-quote {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+  margin-top: 1rem;
+}
+
+.incidents-title {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.tabs-row {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap; /* allow tabs to wrap to multiple rows */
+}
+
+.tab-button {
+  border: 1px solid #e6e6e6;
+  background: #fafafa;
+  padding: 1rem 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 320px; /* larger tabs so more content is visible */
+  max-width: 520px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.tab-button.active {
+  background: white;
+  border-color: #09A509;
+  box-shadow: 0 1px 6px rgba(9,165,9,0.08);
+}
+
+.tab-title {
+  font-weight: 600;
+  color: #222;
+}
+
+.tab-sub {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.tab-desc {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.35;
+  max-height: 8.4rem; /* allow more lines (~6 lines) */
+  overflow: auto;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.tab-meta {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.meta-pill {
+  background: #e9f7ee;
+  color: #086e09;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.tab-content {
+  margin-top: 0.5rem;
+}
+
+.incident-card {
+  background: white;
+  border: 1px solid #f1f1f1;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.incident-card.selected {
+  border-color: #09A509;
+  box-shadow: 0 8px 24px rgba(9,165,9,0.08);
+}
+
+.incident-fields > div {
+  margin: 0.4rem 0;
+}
+
+/* Detail modal should also appear white and centered */
+.detail-backdrop .detail-content {
+  width: 90%;
+  max-width: 800px;
+  background: white;
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+/* make sure long descriptions wrap nicely */
+.incident-fields span {
+  white-space: pre-wrap;
+}
+
+/* Accordion styles for stacked full-width incidents */
+
+.accordion-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center; /* center the cards like the modal */
+}
+
+.accordion-item {
+  background: white;
+  border: 1px solid #e9eef6;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 90%;
+  max-width: 900px; /* match modal/profile width */
+  box-shadow: 0 6px 18px rgba(31,45,61,0.06);
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem; /* match modal spacing */
+  cursor: pointer;
+  border-bottom: 1px solid #f1f5fa;
+}
+
+.header-left .header-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.header-sub {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.header-meta {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.header-meta-item {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.header-meta-item strong {
+  margin-right: 0.35rem;
+  color: #555;
+}
+
+.header-right {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.accordion-content {
+  padding: 0 1.25rem 1.25rem 1.25rem;
+}

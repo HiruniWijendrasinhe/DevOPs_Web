@@ -1,0 +1,104 @@
+.NaviBack {
+  width: 100%;
+  background-color: rgb(9, 165, 9);
+  padding: 0px;
+}
+
+.TopBar {
+  display: flex;
+  align-items: center;
+}
+/* Ensure the header layout keeps navigation centered and the profile icon on the right */
+.TopBar {
+  justify-content: flex-start;
+}
+
+.Logo {
+  width: 120px;
+  height: 120px;
+}
+
+.AdminIcon {
+  /* Increased profile icon size */
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.NewBar p {
+  width: 100px;
+  height: 30px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 24px;
+  text-align: center;
+  padding: 5px;
+}
+
+.NaviBar {
+  display: flex;
+  margin: 0 50px;
+  gap: 30px;
+  list-style-type: none;
+  padding: 0;
+  flex: 1; /* take remaining space so AdminIcon can sit to the right */
+  justify-content: center; /* center nav items */
+}
+
+/* Ensure each nav item has the same height and is vertically centered */
+.NaviBar li {
+  display: flex;
+  align-items: center;
+  height: 72px; /* match profile icon height for visual alignment */
+}
+
+.NaviBar li a {
+  font-size: 21px;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  height: 100%;
+  line-height: 72px;
+}
+
+.NaviBar li a:hover {
+  text-decoration: underline;
+}
+
+.NewBar {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Make the profile icon stick to the far right */
+.AdminIcon {
+  margin-left: auto;
+  margin-right: 20px;
+  display: block;
+}
+
+/* Logout button styling to match your design */
+.logout-btn {
+  background: none;
+  border: none;
+  font-size: 21px;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 6px;
+  display: inline-block;
+  height: 100%;
+  line-height: 72px;
+}
+
+.logout-btn:hover {
+  text-decoration: underline;
+}

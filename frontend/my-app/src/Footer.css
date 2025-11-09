@@ -1,0 +1,48 @@
+.footer-horizontal{
+ display:flex;
+ flex-direction:row;
+ 
+ gap:50px;
+ }
+ 
+  .footer-vertical{
+   display:flex;
+    flex-direction:column;
+    
+    justify-content: center;
+      align-items: center;
+
+      }
+  .footer-horizontal p {
+  font-family:Arial, sans-serif;
+      color:white;
+      text-align:center;
+      justify-content: center;
+      align-items: center;
+      
+
+   }
+    p {
+  font-family:Arial, sans-serif;
+      color:white;
+      text-align:center;
+      justify-content: center;
+      align-items: center;
+      
+
+   }
+  
+    .site-footer
+    {
+      background-color:rgb(9, 165, 9);
+
+      }
+     .footer-horizontal img
+         {
+           width:40px;
+           height:40px;
+
+
+          }
+    
+   
