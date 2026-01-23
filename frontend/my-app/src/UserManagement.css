@@ -50,18 +50,19 @@
 }
 
 .filter-btn {
-  padding: 0.75rem 1.5rem;
+  padding: 0.35rem 0.8rem;
   border: 1px solid #ddd;
   background: white;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 0.95rem;
 }
 
 .filter-btn.active {
-  background: #09A509;
+  background:rgb(195, 18, 18);;
   color: white;
-  border-color: #09A509;
+  border-color: rgb(195, 18, 18);;
 }
 
 .filter-btn:hover {
@@ -69,7 +70,7 @@
 }
 
 .filter-btn.active:hover {
-  background: #078707;
+  background: rgb(195, 18, 18);;
 }
 
 /* Users Table */
@@ -149,7 +150,7 @@
 
 .role-select:focus, .team-select:focus {
   outline: none;
-  border-color: #09A509;
+  border-color: rgb(195, 18, 18);
 }
 
 .role-badge, .team-badge {
@@ -177,7 +178,7 @@
 }
 
 .refresh-btn {
-  background: #28a745;
+  background: rgb(195, 18, 18);
   color: white;
   border: none;
   padding: 0.5rem;
@@ -187,7 +188,7 @@
 }
 
 .refresh-btn:hover {
-  background: #218838;
+  background: #b31313;
 }
 
 /* Statistics */
@@ -208,7 +209,7 @@
 
 .stat-card h3 {
   font-size: 2rem;
-  color: #09A509;
+  color: rgb(195, 18, 18);
   margin-bottom: 0.5rem;
 }
 

@@ -11,6 +11,13 @@ export const createUser = async (username, email, hashedPassword) => {
   return result.insertId;
 };
 
+// Reset user password by email
+export const resetPassword = async (email, hashedPassword) => {
+  const sql = `UPDATE user SET Password = ? WHERE Email = ?`;
+  const [result] = await pool.query(sql, [hashedPassword, email]);
+  return result;
+};
+
 // Find a user by email
 export const findUserByEmail = async (email) => {
   const [rows] = await pool.query("SELECT * FROM user WHERE Email = ?", [email]);

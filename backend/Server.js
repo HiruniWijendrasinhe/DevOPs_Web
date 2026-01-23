@@ -16,6 +16,10 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:3000" }));
 
+
+// Mount all routes at /api (for /api/comments, /api/incidents, etc)
+app.use("/api", authRoute);
+// Optionally keep this if you want /api/auth/... to also work
 app.use("/api/auth", authRoute);
 
 app.get("/", async (req, res) => {

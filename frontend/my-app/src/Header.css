@@ -1,8 +1,11 @@
-.NaviBack {
+ .NaviBack {
   width: 100%;
-  background-color: rgb(9, 165, 9);
   padding: 0px;
-}
+  position: relative;
+  background-color: rgb(17, 17, 17);
+ }
+
+/* Removed global background: background image should be applied only on Home page via Home.css */
 
 .TopBar {
   display: flex;
@@ -13,24 +16,23 @@
   justify-content: flex-start;
 }
 
-.Logo {
-  width: 120px;
-  height: 120px;
+ .Logo {
+  width: 160px;
+  height: 160px;
 }
 
-.AdminIcon {
-  /* Increased profile icon size */
-  width: 72px;
-  height: 72px;
+ .AdminIcon {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
 }
 
-.NewBar p {
+ .NewBar p {
   width: 100px;
   height: 30px;
-  color: white;
+  color: #111;
   font-size: 15px;
   font-weight: bold;
   border: none;
@@ -56,10 +58,10 @@
   height: 72px; /* match profile icon height for visual alignment */
 }
 
-.NaviBar li a {
+ .NaviBar li a {
   font-size: 21px;
   font-family: Arial, sans-serif;
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
   display: inline-block;

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jspdf": "^4.0.0",
+    "nodemailer": "^7.0.12"
+  }
+}

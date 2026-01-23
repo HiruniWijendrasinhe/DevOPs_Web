@@ -6,8 +6,13 @@ import './Home.css';
 function Home() {
 const navigate=useNavigate();
 const handleAdd = () => {
-
-    navigate("/login");}
+  const token = localStorage.getItem('token');
+  if (token) {
+    navigate("/incidents"); // Go to CreateIncident page if logged in
+  } else {
+    navigate("/login"); // Go to login if not logged in
+  }
+}
   return (
 
   <div className="HomeContainer">

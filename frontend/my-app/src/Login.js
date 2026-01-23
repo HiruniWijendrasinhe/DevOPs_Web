@@ -8,6 +8,11 @@ import PropTypes from "prop-types";
 function Login({ show, onClose, onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showReset, setShowReset] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [resetMessage, setResetMessage] = useState("");
   const navigate = useNavigate();
   const Back_End_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
@@ -51,10 +56,42 @@ function Login({ show, onClose, onLogin }) {
     navigate("/");
   };
 
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    if (!resetEmail.trim() || !newPassword.trim() || !confirmPassword.trim()) {
+      setResetMessage("Please fill in all fields.");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      setResetMessage("Passwords do not match.");
+      return;
+    }
+    try {
+      // Ensure this path matches your backend route (e.g., /api/reset-password)
+      const res = await axios.post(`${Back_End_URL}/api/reset-password`, {
+        email: resetEmail,
+        newPassword: newPassword,
+      });
+      setResetMessage(res.data.message || "Password reset successful. You can now log in.");
+      // If successful, close modal and redirect to home after a short delay
+      setTimeout(() => {
+        setShowReset(false);
+        setResetMessage("");
+        setResetEmail("");
+        setNewPassword("");
+        setConfirmPassword("");
+        navigate("/");
+      }, 1200); // 1.2 seconds for user to see the message
+    } catch (err) {
+      setResetMessage(
+        err.response?.data?.message || "Password reset failed. Try again."
+      );
+    }
+  };
+
   return (
     <>
       <Home />
-
       <div className="backdrop">
         <div className="modal">
           <h3>Login</h3>
@@ -75,7 +112,14 @@ function Login({ show, onClose, onLogin }) {
               required
               className="input"
             />
-
+            <div style={{ textAlign: "right", marginBottom: "10px" }}>
+              <span
+                style={{ color: "#007bff", cursor: "pointer", textDecoration: "underline" }}
+                onClick={() => setShowReset(true)}
+              >
+                Forgot Password?
+              </span>
+            </div>
             <div className="formatnew">
               <button type="submit" className="button">
                 Login
@@ -87,6 +131,62 @@ function Login({ show, onClose, onLogin }) {
           </form>
         </div>
       </div>
+      {showReset && (
+        <div className="backdrop" style={{ zIndex: 1000 }}>
+          <div className="modal">
+            <h3>Reset Password</h3>
+            <form onSubmit={handleResetPassword}>
+              <input
+                type="text"
+                placeholder="Email"
+                value={resetEmail}
+                onChange={(e) => setResetEmail(e.target.value)}
+                required
+                className="input"
+              />
+              <input
+                type="password"
+                placeholder="New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+                className="input"
+              />
+              <input
+                type="password"
+                placeholder="Confirm New Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                className="input"
+              />
+              {resetMessage && (
+                <div style={{ color: resetMessage.includes("successful") ? "green" : "red", marginBottom: "8px" }}>
+                  {resetMessage}
+                </div>
+              )}
+              <div className="formatnew">
+                <button type="submit" className="button">
+                  Reset Password
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowReset(false);
+                    setResetMessage("");
+                    setResetEmail("");
+                    setNewPassword("");
+                    setConfirmPassword("");
+                  }}
+                  className="button"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }

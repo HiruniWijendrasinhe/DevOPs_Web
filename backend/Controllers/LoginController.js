@@ -1,6 +1,27 @@
 import jwt from "jsonwebtoken";
-import { findUserByEmail } from "../Models/User.js";
+import { findUserByEmail, resetPassword } from "../Models/User.js";
+// Reset password controller
 import bcrypt from "bcrypt";
+
+export const resetPasswordController = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+    if (!email || !newPassword) {
+      return res.status(400).json({ message: "Email and new password are required" });
+    }
+    const user = await findUserByEmail(email);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await resetPassword(email, hashedPassword);
+    res.status(200).json({ message: "Password reset successful" });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
 
 export const loginUser = async (req, res) => {
   try {

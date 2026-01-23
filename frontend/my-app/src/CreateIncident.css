@@ -1,10 +1,75 @@
-.modal-backdrop {
+/* Icon action buttons for create/refresh */
+.create-actions-vertical {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  z-index: 10;
+}
+.icon-btn {
+  background: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.icon-btn:hover {
+  background: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+.add-btn span {
+  color: #09A509;
+  font-weight: bold;
+}
+.refresh-btn svg {
+  display: block;
+}
+/* Department badge styles */
+.department-badge {
+  display: inline-block;
+  padding: 0.2em 0.9em;
+  border-radius: 999px;
+  font-size: 1em;
+  font-weight: bold;
+  margin-left: 0.5em;
+  margin-top: 0.1em;
+  vertical-align: middle;
+  color: #111;
+  background: #eee;
+  letter-spacing: 0.01em;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+.department-hr {
+  background: #ffb6d5;
+}
+.department-qa {
+  background: #aee7ff;
+}
+.department-finance {
+  background: #fff7b2;
+}
+.department-operations {
+  background: #e0e0e0;
+}
+.department-development {
+  background: #b6ffb6;
+}
+ .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: none;
   display: flex;
   justify-content: center;
   align-items: center;
