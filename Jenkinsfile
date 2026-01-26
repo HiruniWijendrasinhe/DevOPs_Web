@@ -71,11 +71,13 @@ pipeline {
                     sh 'chmod 600 jenkins_key.pem'
 
                     sh """
-                    ansible-playbook -i ${REMOTE_HOST}, deploy.yml \
-                    --private-key jenkins_key.pem \
-                    -u ${REMOTE_USER} \
-                    --ssh-extra-args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-                    """
+ansible-playbook -i ${REMOTE_HOST}, deploy.yml \
+--private-key jenkins_key.pem \
+-u ${REMOTE_USER} \
+-e "build_number=${env.BUILD_NUMBER}" \
+--ssh-extra-args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+"""
+
                 }
             }
         }
