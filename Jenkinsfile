@@ -5,7 +5,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('ee2e2ea7-2ab9-4672-8ecd-e3a149bdbccb')
         SSH_CREDENTIALS = credentials('ansible-ssh')
         REMOTE_HOST = '100.26.112.105' // Your AWS EC2 public IP or hostname
-        REMOTE_USER = 'ec2-user' // Your EC2 user
+        REMOTE_USER = 'ec2-user'       // Your EC2 user
     }
 
     stages {
@@ -59,23 +59,24 @@ pipeline {
         }
 
         stage('Deploy to AWS via Ansible') {
-    steps {
-        script {
-            // Write private key temporarily
-            writeFile file: 'jenkins_key.pem', text: "${SSH_CREDENTIALS}"
-            sh 'chmod 600 jenkins_key.pem'
+            steps {
+                script {
+                    // Write private key temporarily
+                    writeFile file: 'jenkins_key.pem', text: "${SSH_CREDENTIALS}"
+                    sh 'chmod 600 jenkins_key.pem'
 
-            // Deploy Docker containers on EC2
-            sh """
-                ansible-playbook -i 100.26.112.105, deploy.yml --private-key jenkins_key.pem -u ec2-user
-            """
+                    // Deploy Docker containers on EC2
+                    sh """
+                        ansible-playbook -i ${REMOTE_HOST}, deploy.yml --private-key jenkins_key.pem -u ${REMOTE_USER}
+                    """
+                }
+            }
         }
-    }
-}
+    } // <-- closing stages block
 
     post {
         always {
             cleanWs() // Clean workspace after each build
         }
     }
-}
+} // <-- closing pipeline
