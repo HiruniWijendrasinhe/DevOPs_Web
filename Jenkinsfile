@@ -21,14 +21,15 @@ pipeline {
                 stage('Frontend Image') {
                     steps {
                         script {
-                            docker.build("hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}", "./frontend_Devops")
+                            docker.build("hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}", "./frontend
+/my-app")
                         }
                     }
                 }
                 stage('Backend Image') {
                     steps {
                         script {
-                            docker.build("hiruniwijendrasinhe/alertfy_backend:${env.BUILD_NUMBER}", "./backend_Devops")
+                            docker.build("hiruniwijendrasinhe/alertfy_backend:${env.BUILD_NUMBER}", "./backend")
                         }
                     }
                 }
