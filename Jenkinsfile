@@ -21,15 +21,20 @@ pipeline {
                 stage('Frontend Image') {
                     steps {
                         script {
-                            docker.build("hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}", "./frontend
-/my-app")
+                            docker.build(
+                                "hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}",
+                                "frontend/my-app" // Correct path to your frontend Dockerfile folder
+                            )
                         }
                     }
                 }
                 stage('Backend Image') {
                     steps {
                         script {
-                            docker.build("hiruniwijendrasinhe/alertfy_backend:${env.BUILD_NUMBER}", "./backend")
+                            docker.build(
+                                "hiruniwijendrasinhe/alertfy_backend:${env.BUILD_NUMBER}",
+                                "backend" // Correct path to your backend Dockerfile folder
+                            )
                         }
                     }
                 }
@@ -73,11 +78,11 @@ pipeline {
                 }
             }
         }
-    } // <-- closing stages block
+    } // closing stages block
 
     post {
         always {
             cleanWs() // Clean workspace after each build
         }
     }
-} // <-- closing pipeline
+} // closing pipeline
