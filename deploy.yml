@@ -1,8 +1,9 @@
 - hosts: all
   become: yes
+  gather_facts: no   # Disable gathering facts to speed up
   vars:
-    frontend_image: "hiruniwijendrasinhe/alertfy_frontend:latest"
-    backend_image: "hiruniwijendrasinhe/alertfy_backend:latest"
+    frontend_image: "hiruniwijendrasinhe/alertfy_frontend:{{ build_number }}"
+    backend_image: "hiruniwijendrasinhe/alertfy_backend:{{ build_number }}"
   tasks:
     - name: Ensure Docker is installed
       ansible.builtin.yum:
@@ -30,15 +31,17 @@
         name: frontendnew
         image: "{{ frontend_image }}"
         state: started
-        ports:
-          - "81:3000"   # frontend host port 81 → container port 3000
         restart_policy: always
+        ports:
+          - "81:3000"
+        recreate: yes   # Automatically replaces old container if exists
 
     - name: Run backend container
       community.docker.docker_container:
         name: backendnew
         image: "{{ backend_image }}"
         state: started
-        ports:
-          - "82:5000"   # backend host port 82 → container port 5000
         restart_policy: always
+        ports:
+          - "82:5000"
+        recreate: yes
