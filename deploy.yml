@@ -1,0 +1,44 @@
+- hosts: all
+  become: yes
+  vars:
+    frontend_image: "hiruniwijendrasinhe/alertfy_frontend:latest"
+    backend_image: "hiruniwijendrasinhe/alertfy_backend:latest"
+  tasks:
+    - name: Ensure Docker is installed
+      ansible.builtin.yum:
+        name: docker
+        state: present
+
+    - name: Start Docker service
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull frontend Docker image
+      community.docker.docker_image:
+        name: "{{ frontend_image }}"
+        source: pull
+
+    - name: Pull backend Docker image
+      community.docker.docker_image:
+        name: "{{ backend_image }}"
+        source: pull
+
+    - name: Run frontend container
+      community.docker.docker_container:
+        name: frontendnew
+        image: "{{ frontend_image }}"
+        state: started
+        ports:
+          - "81:3000"   # frontend host port 81 → container port 3000
+        restart_policy: always
+
+    - name: Run backend container
+      community.docker.docker_container:
+        name: backendnew
+        image: "{{ backend_image }}"
+        state: started
+        ports:
+          - "82:5000"   # backend host port 82 → container port 5000
+        restart_policy: always
