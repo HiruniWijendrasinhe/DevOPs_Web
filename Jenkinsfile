@@ -4,8 +4,8 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('ee2e2ea7-2ab9-4672-8ecd-e3a149bdbccb')
         SSH_CREDENTIALS = credentials('ansible-ssh')
-        REMOTE_HOST = '100.26.112.105' // Your AWS EC2 public IP or hostname
-        REMOTE_USER = 'ec2-user'       // Your EC2 user
+        REMOTE_HOST = '100.26.112.105'
+        REMOTE_USER = 'ec2-user'
     }
 
     stages {
@@ -23,7 +23,7 @@ pipeline {
                         script {
                             docker.build(
                                 "hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}",
-                                "frontend/my-app" // Correct path to your frontend Dockerfile folder
+                                "frontend/my-app"
                             )
                         }
                     }
@@ -33,7 +33,7 @@ pipeline {
                         script {
                             docker.build(
                                 "hiruniwijendrasinhe/alertfy_backend:${env.BUILD_NUMBER}",
-                                "backend" // Correct path to your backend Dockerfile folder
+                                "backend"
                             )
                         }
                     }
@@ -67,22 +67,23 @@ pipeline {
         stage('Deploy to AWS via Ansible') {
             steps {
                 script {
-                    // Write private key temporarily
                     writeFile file: 'jenkins_key.pem', text: "${SSH_CREDENTIALS}"
                     sh 'chmod 600 jenkins_key.pem'
 
-                    // Deploy Docker containers on EC2
                     sh """
-                        ansible-playbook -i ${REMOTE_HOST}, deploy.yml --private-key jenkins_key.pem -u ${REMOTE_USER}
+                    ansible-playbook -i ${REMOTE_HOST}, deploy.yml \
+                    --private-key jenkins_key.pem \
+                    -u ${REMOTE_USER} \
+                    --ssh-extra-args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
                     """
                 }
             }
         }
-    } // closing stages block
+    }
 
     post {
         always {
-            cleanWs() // Clean workspace after each build
+            cleanWs()
         }
     }
-} // closing pipeline
+}
