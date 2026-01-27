@@ -80,7 +80,7 @@ ansible-playbook -i ${REMOTE_HOST}, deploy.yml \
 """
         }
     }
-}
+} }
 
 
     post {
