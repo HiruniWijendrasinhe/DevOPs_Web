@@ -65,23 +65,24 @@ pipeline {
         }
 
         stage('Deploy to AWS via Ansible') {
-    steps {
-        script {
-            // Copy the secret file to a usable path and set permissions
-            sh 'cp $SSH_CREDENTIALS jenkins_key.pem && chmod 600 jenkins_key.pem'
+            steps {
+                script {
+                    // Save private key from Jenkins credentials
+                    writeFile file: 'jenkins_key.pem', text: "${SSH_CREDENTIALS}"
+                    sh 'chmod 600 jenkins_key.pem'
 
-            // Run the Ansible playbook
-            sh """
+                    // Run Ansible playbook with build number
+                    sh """
 ansible-playbook -i ${REMOTE_HOST}, deploy.yml \
 --private-key jenkins_key.pem \
 -u ${REMOTE_USER} \
 -e "build_number=${env.BUILD_NUMBER}" \
 --ssh-extra-args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 """
+                }
+            }
         }
     }
-} }
-
 
     post {
         always {
