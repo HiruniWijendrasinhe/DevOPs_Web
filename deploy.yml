@@ -1,9 +1,12 @@
 - hosts: all
   become: yes
-  gather_facts: no   # Disable gathering facts to speed up
+  gather_facts: no
   vars:
     frontend_image: "hiruniwijendrasinhe/alertfy_frontend:{{ build_number }}"
     backend_image: "hiruniwijendrasinhe/alertfy_backend:{{ build_number }}"
+    frontend_env_file: "/home/ec2-user/frontend.env"
+    backend_env_file: "/home/ec2-user/backend.env"
+
   tasks:
     - name: Ensure Docker is installed
       ansible.builtin.yum:
@@ -26,6 +29,18 @@
         name: "{{ backend_image }}"
         source: pull
 
+    - name: Remove old frontend container if exists
+      community.docker.docker_container:
+        name: frontendnew
+        state: absent
+        force_kill: yes
+
+    - name: Remove old backend container if exists
+      community.docker.docker_container:
+        name: backendnew
+        state: absent
+        force_kill: yes
+
     - name: Run frontend container
       community.docker.docker_container:
         name: frontendnew
@@ -34,7 +49,8 @@
         restart_policy: always
         ports:
           - "81:3000"
-        recreate: yes   # Automatically replaces old container if exists
+        env_file: "{{ frontend_env_file }}"
+        recreate: yes
 
     - name: Run backend container
       community.docker.docker_container:
@@ -44,4 +60,5 @@
         restart_policy: always
         ports:
           - "82:5000"
+        env_file: "{{ backend_env_file }}"
         recreate: yes
