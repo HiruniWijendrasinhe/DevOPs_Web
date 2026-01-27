@@ -1,8 +1,8 @@
 - hosts: all
   become: yes
   vars:
-    frontend_image: "hiruniwijendrasinhe/alertfy_frontend:latest"
-    backend_image: "hiruniwijendrasinhe/alertfy_backend:latest"
+    frontend_image: "hiruniwijendrasinhe/alertfy_frontend:{{ build_number }}"
+    backend_image: "hiruniwijendrasinhe/alertfy_backend:{{ build_number }}"
   tasks:
     - name: Ensure Docker is installed
       ansible.builtin.yum:
