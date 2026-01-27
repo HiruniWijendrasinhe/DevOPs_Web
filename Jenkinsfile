@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('ee2e2ea7-2ab9-4672-8ecd-e3a149bdbccb')
         SSH_CREDENTIALS = credentials('ansible-ssh')
-        REMOTE_HOST = '100.26.112.105'
+        REMOTE_HOST = '174.129.55.24'
         REMOTE_USER = 'ec2-user'
     }
 
