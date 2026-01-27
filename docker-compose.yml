@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   frontend:
-    image: hiruniwijendrasinhe/incident-frontend:latest
+    image: hiruniwijendrasinhe/alertfy_frontend:latest
     container_name: frontend_c
     ports:
       - "3000:3000"
@@ -11,7 +11,7 @@ services:
       - backend
 
   backend:
-    image: hiruniwijendrasinhe/incident-backend:latest
+    image: hiruniwijendrasinhe/alertfy_backend:latest
     container_name: backend_c
     ports:
       - "5000:5000"

@@ -22,7 +22,7 @@ function Header() {
       }
 
       const response = await axios.get(
-        "http://localhost:5000/api/auth/current-user",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/current-user`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -34,7 +34,7 @@ function Header() {
       console.log("User role:", userData.role);
       console.log("User ID:", userData.id);
       console.log("User name:", userData.username);
-      const Back_End_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+      const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
       // If the profileUrl is already an absolute URL (Cloudinary), use it as-is,
       // otherwise prefix with backend URL for local uploads.
       setProfileUrl(
@@ -56,7 +56,7 @@ function Header() {
       const cached = localStorage.getItem("user");
       if (cached) {
         const parsed = JSON.parse(cached);
-        const Back_End_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+        const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
         setProfileUrl(parsed.profileUrl ? (parsed.profileUrl.startsWith("http") ? parsed.profileUrl : `${Back_End_URL}${parsed.profileUrl}`) : admin);
         setUser(parsed);
       }
@@ -72,7 +72,7 @@ function Header() {
     const handler = (e) => {
       if (e?.detail) {
         const data = e.detail;
-        const Back_End_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+        const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
         setProfileUrl(data.profileUrl ? (data.profileUrl.startsWith("http") ? data.profileUrl : `${Back_End_URL}${data.profileUrl}`) : admin);
         setUser(data);
       } else {

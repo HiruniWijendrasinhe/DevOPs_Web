@@ -25,7 +25,7 @@ function Progress() {
     const fetchIncidents = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/auth/incidents/all`, {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/incidents/all`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setIncidents(res.data || []);
@@ -82,12 +82,12 @@ function Progress() {
         try {
           const token = localStorage.getItem('token');
           await axios.put(
-            `${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/auth/incidents/${inc.ID || inc.id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/api/auth/incidents/${inc.ID || inc.id}`,
             { Stage: nextState },
             { headers: { Authorization: `Bearer ${token}` } }
           );
           // Refresh incidents
-          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/auth/incidents/all`, {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/auth/incidents/all`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setIncidents(res.data || []);
@@ -186,7 +186,7 @@ function Progress() {
           setCommentError("");
           try {
             const token = localStorage.getItem('token');
-            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/comments/incident/${inc.ID || inc.id}`, {
+            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/comments/incident/${inc.ID || inc.id}`, {
               headers: { Authorization: `Bearer ${token}` }
             });
             setComments(res.data || []);
@@ -231,7 +231,7 @@ function Progress() {
         setCommentError("");
         try {
           const token = localStorage.getItem('token');
-          await axios.post(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/comments/`, {
+          await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/comments/`, {
             Incident_ID: inc.ID || inc.id,
             Content: commentText
           }, {
@@ -239,7 +239,7 @@ function Progress() {
           });
           setCommentText("");
           // Refresh comments
-          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/comments/incident/${inc.ID || inc.id}`,
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/comments/incident/${inc.ID || inc.id}`,
             { headers: { Authorization: `Bearer ${token}` } });
           setComments(res.data || []);
         } catch (e) {
@@ -256,14 +256,14 @@ function Progress() {
         setCommentError("");
         try {
           const token = localStorage.getItem('token');
-          await axios.put(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/comments/${commentId}`,
+          await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${commentId}`,
             { Comment_Text: newText },
             { headers: { Authorization: `Bearer ${token}` } }
           );
           setEditingCommentId(null);
           setEditText("");
           // Refresh comments
-          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/comments/incident/${inc.ID || inc.id}`,
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/comments/incident/${inc.ID || inc.id}`,
             { headers: { Authorization: `Bearer ${token}` } }
           );
           setComments(res.data || []);
@@ -280,11 +280,11 @@ function Progress() {
         setCommentError("");
         try {
           const token = localStorage.getItem('token');
-          await axios.delete(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/comments/${commentId}`,
+          await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${commentId}`,
             { headers: { Authorization: `Bearer ${token}` } }
           );
           // Refresh comments
-          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/comments/incident/${inc.ID || inc.id}`,
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/comments/incident/${inc.ID || inc.id}`,
             { headers: { Authorization: `Bearer ${token}` } }
           );
           setComments(res.data || []);
@@ -308,13 +308,13 @@ function Progress() {
             Severity: editSeverity
           };
           await axios.put(
-            `${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/incidents/${inc.ID || inc.id}`,
+            `${process.env.REACT_APP_BACKEND_URL}/api/incidents/${inc.ID || inc.id}`,
             updatePayload,
             { headers: { Authorization: `Bearer ${token}` } }
           );
           setEditMsg("Saved!");
           // Refresh incident data after save
-          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"}/api/incidents/all`, {
+          const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/incidents/all`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           const updated = res.data?.find(i => (i.ID || i.id) === (inc.ID || inc.id));

@@ -10,7 +10,7 @@ function UserManagement() {
   const [filter, setFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const Back_End_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+  const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
   const token = localStorage.getItem("token");
 
   useEffect(() => {

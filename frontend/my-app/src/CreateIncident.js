@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CreateIncident.css";
-const Back_End_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
 
 function ResolverAssignDropdown({ incident, users, onAssign }) {
   const [open, setOpen] = React.useState(false);

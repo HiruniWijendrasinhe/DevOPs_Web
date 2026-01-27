@@ -1,21 +1,14 @@
-# Use the latest LTS version of Node.js
-FROM node:18-alpine
-
-# Set the working directory inside the container
+FROM node:20 AS build
 WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Set npm registry and increase network timeout
-RUN npm config set registry https://registry.npmjs.org/ \
-    && npm install --network-timeout=100000
-
-# Copy the rest of your application files
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
+RUN npm run build
 
-# Expose the port your app runs on
+# Use Nginx to serve the build
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+# Optionally, copy a custom nginx.conf if needed
+# COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 3000
-
-# Define the command to run your app
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
