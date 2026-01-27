@@ -68,13 +68,13 @@ pipeline {
             steps {
                 script {
                     // Save private key from Jenkins credentials
-                    writeFile file: 'jenkins_key.pem', text: "${SSH_CREDENTIALS}"
-                    sh 'chmod 600 jenkins_key.pem'
+                    writeFile file: 'devops-key.pem', text: "${SSH_CREDENTIALS}"
+                    sh 'chmod 600 devops-key.pem'
 
                     // Run Ansible playbook with build number
                     sh """
 ansible-playbook -i ${REMOTE_HOST}, deploy.yml \
---private-key jenkins_key.pem \
+--private-key devops-key.pem \
 -u ${REMOTE_USER} \
 -e "build_number=${env.BUILD_NUMBER}" \
 --ssh-extra-args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
