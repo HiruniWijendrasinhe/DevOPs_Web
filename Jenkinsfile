@@ -71,6 +71,11 @@ pipeline {
                     writeFile file: 'devops-key.pem', text: "${SSH_CREDENTIALS}"
                     sh 'chmod 600 devops-key.pem'
 
+                    // Debug: show key file permissions and content
+                    sh 'ls -l devops-key.pem'
+                    sh 'head -5 devops-key.pem'
+                    sh 'tail -5 devops-key.pem'
+
                     // Run Ansible playbook with build number
                     sh """
 ansible-playbook -i ${REMOTE_HOST}, deploy.yml \
