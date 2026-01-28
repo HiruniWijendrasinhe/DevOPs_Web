@@ -14,7 +14,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "http://174.129.55.24:81" }));
 
 
 // Mount all routes at /api (for /api/comments, /api/incidents, etc)
