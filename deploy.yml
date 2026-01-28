@@ -25,6 +25,11 @@
         name: "{{ backend_image }}"
         source: pull
 
+      - name: Create user-defined Docker network
+        community.docker.docker_network:
+          name: mynetwork
+          state: present
+
     - name: Run frontend container
       community.docker.docker_container:
         name: frontendnew
@@ -33,6 +38,8 @@
         ports:
           - "81:3000"   # frontend host port 81 → container port 3000
         restart_policy: always
+          networks:
+            - name: mynetwork
 
     - name: Run backend container
       community.docker.docker_container:
@@ -42,3 +49,5 @@
         ports:
           - "82:5000"   # backend host port 82 → container port 5000
         restart_policy: always
+          networks:
+            - name: mynetwork
