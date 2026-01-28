@@ -32,7 +32,7 @@ pipeline {
                         script {
                             docker.build(
                                 "hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}",
-                                "frontend/my-app"
+                                "frontend/my-app --no-cache"
                             )
                         }
                     }
