@@ -1,3 +1,5 @@
+
+.env
 ## React app .gitignore (frontend/my-app)
 
 # dependencies
@@ -24,4 +26,4 @@ yarn-error.log*
 .npm
 
 # local development files
-.env
+

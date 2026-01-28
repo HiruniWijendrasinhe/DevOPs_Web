@@ -4,7 +4,7 @@ services:
     image: hiruniwijendrasinhe/alertfy_frontend:latest
     container_name: frontend_c
     ports:
-      - "3000:3000"
+      - "3000:80"
     env_file:
       - ./frontend/my-app/.env
     depends_on:
