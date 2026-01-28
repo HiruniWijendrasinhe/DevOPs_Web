@@ -6,6 +6,7 @@ pipeline {
         SSH_CREDENTIALS = credentials('ansible-ssh')
         REMOTE_HOST = '174.129.55.24'
         REMOTE_USER = 'ec2-user'
+        REACT_APP_BACKEND_URL = credentials('REACT_APP_BACKEND_URL')
     }
 
     stages {
@@ -13,6 +14,14 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'master', url: 'https://github.com/HiruniWijendrasinhe/DevOPs_Web'
+            }
+        }
+
+        stage('Create .env for Frontend') {
+            steps {
+                sh '''
+                echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > frontend/my-app/.env
+                '''
             }
         }
 
