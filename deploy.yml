@@ -53,6 +53,7 @@
           - "82:5000"
         networks:
           - name: mynetwork
+        env_file: /home/ec2-user/backend/.env
 
     - name: Run frontend container
       community.docker.docker_container:
