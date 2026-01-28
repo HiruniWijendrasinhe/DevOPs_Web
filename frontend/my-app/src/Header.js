@@ -140,7 +140,7 @@ function Header() {
           {/* Dropdown menu for profile actions */}
           {showProfileMenu && token && (
             <div style={{ position: 'absolute', right: 0, top: '110%', background: '#fff', border: '1px solid #ddd', borderRadius: 8, boxShadow: '0 2px 8px #0002', zIndex: 100, minWidth: 120, padding: '2px 0' }}>
-              <button onClick={() => window.location.href='/profile'} style={{ width: '90%', padding: '0px 0', border: 'none', background: 'none', color: '#222', fontWeight: 400, borderRadius: 8, cursor: 'pointer', fontSize: '0.93em', display: 'block', marginBottom: '0' }}>Edit Profile</button>
+              <button onClick={() => navigate('/profile')} style={{ width: '90%', padding: '0px 0', border: 'none', background: 'none', color: '#222', fontWeight: 400, borderRadius: 8, cursor: 'pointer', fontSize: '0.93em', display: 'block', marginBottom: '0' }}>Edit Profile</button>
               
               <button onClick={handleLogout} style={{ width: '90%', padding: '0px 0', border: 'none', background: 'none', color: '#222', fontWeight: 400, borderRadius: 8, cursor: 'pointer', fontSize: '0.93em', display: 'block', marginTop: '0' }}>Logout</button>
             </div>
