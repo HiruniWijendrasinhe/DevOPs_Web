@@ -3,6 +3,7 @@
   vars:
     frontend_image: "hiruniwijendrasinhe/alertfy_frontend:{{ build_number }}"
     backend_image: "hiruniwijendrasinhe/alertfy_backend:{{ build_number }}"
+
   tasks:
     - name: Ensure Docker is installed
       ansible.builtin.yum:
@@ -30,26 +31,36 @@
         name: mynetwork
         state: present
 
-    - name: Run frontend container
+    - name: Remove old frontend container if exists
       community.docker.docker_container:
         name: frontendnew
-        image: "{{ frontend_image }}"
-        state: started
-        ports:
-          - "81:80"
-        restart_policy: always
-        networks:
-          - name: mynetwork
-        env_file: /home/ec2-user/frontend/my-app/.env
+        state: absent
+        force_kill: yes
+
+    - name: Remove old backend container if exists
+      community.docker.docker_container:
+        name: backendnew
+        state: absent
+        force_kill: yes
 
     - name: Run backend container
       community.docker.docker_container:
         name: backendnew
         image: "{{ backend_image }}"
         state: started
+        restart_policy: always
         ports:
           - "82:5000"
-        restart_policy: always
         networks:
           - name: mynetwork
-        env_file: /home/ec2-user/backend/.env
+
+    - name: Run frontend container
+      community.docker.docker_container:
+        name: frontendnew
+        image: "{{ frontend_image }}"
+        state: started
+        restart_policy: always
+        ports:
+          - "81:80"
+        networks:
+          - name: mynetwork

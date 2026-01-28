@@ -17,14 +17,6 @@ pipeline {
             }
         }
 
-        stage('Create .env for Frontend') {
-            steps {
-                sh '''
-                echo "REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL" > frontend/my-app/.env
-                '''
-            }
-        }
-
         stage('Build Docker Images') {
             parallel {
                 stage('Frontend Image') {
@@ -32,7 +24,7 @@ pipeline {
                         script {
                             docker.build(
                                 "hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}",
-                                "frontend/my-app --no-cache"
+                                "--build-arg REACT_APP_BACKEND_URL=${env.REACT_APP_BACKEND_URL} frontend/my-app"
                             )
                         }
                     }
@@ -79,7 +71,7 @@ pipeline {
                     sh """
 ansible-playbook -i ${REMOTE_HOST}, deploy.yml \
 -u ${REMOTE_USER} \
--e \"build_number=${env.BUILD_NUMBER}\" \
+-e "build_number=${env.BUILD_NUMBER}" \
 --ssh-extra-args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 """
                 }
