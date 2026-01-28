@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CreateIncident.css";
-const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
+//const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
 
 function ResolverAssignDropdown({ incident, users, onAssign }) {
   const [open, setOpen] = React.useState(false);
@@ -27,6 +27,9 @@ function ResolverAssignDropdown({ incident, users, onAssign }) {
     </div>
   );
 }
+      const Back_End_URL = "http://174.129.55.24:82";
+
+      // ...existing code...
 
 function CreateIncident({ hideCreateActions, showResolverAssign = false, hideHeadings = false, adminAssignedStyle = false }) {
     const [currentUser, setCurrentUser] = useState(null);
@@ -44,7 +47,7 @@ function CreateIncident({ hideCreateActions, showResolverAssign = false, hideHea
     // Fetch all users for resolver assignment (admin only)
     useEffect(() => {
       if (showResolverAssign) {
-        const fetchUsers = async () => {
+        const fetchUsers = async () => { 
           try {
             const token = localStorage.getItem("token");
             const res = await axios.get(`${Back_End_URL}/api/auth/admin/users`, { headers: { Authorization: `Bearer ${token}` } });
@@ -116,7 +119,7 @@ function CreateIncident({ hideCreateActions, showResolverAssign = false, hideHea
   useEffect(() => {
     const handler = (e) => {
       console.log('profileUpdated event received in CreateIncident', e?.detail);
-      fetchIncidents();
+        fetchIncidents(); 
     };
     window.addEventListener('profileUpdated', handler);
     // Also listen for storage changes (in case other tabs update token)

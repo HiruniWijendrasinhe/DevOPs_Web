@@ -16,9 +16,9 @@ function Profile() {
   const [photoFile, setPhotoFile] = useState(null);
   const [message, setMessage] = useState("");
 
-  const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
+  //const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
   const token = localStorage.getItem("token");
-
+    const Back_End_URL = "http://174.129.55.24:82";
   // Fetch current user profile
   const fetchMyProfile = async () => {
     try {

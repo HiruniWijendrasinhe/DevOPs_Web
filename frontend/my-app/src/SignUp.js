@@ -9,8 +9,8 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
-
+  //const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
+  const Back_End_URL = "http://174.129.55.24:82";
   const handleSubmit = async (e) => {
     e.preventDefault();
 

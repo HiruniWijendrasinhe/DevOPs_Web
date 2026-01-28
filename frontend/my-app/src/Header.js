@@ -22,7 +22,7 @@ function Header() {
       }
 
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/auth/current-user`,
+        `http://174.129.55.24:82/api/auth/current-user`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -34,7 +34,7 @@ function Header() {
       console.log("User role:", userData.role);
       console.log("User ID:", userData.id);
       console.log("User name:", userData.username);
-      const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
+      const Back_End_URL = "http://174.129.55.24:82";
       // If the profileUrl is already an absolute URL (Cloudinary), use it as-is,
       // otherwise prefix with backend URL for local uploads.
       setProfileUrl(
@@ -56,7 +56,7 @@ function Header() {
       const cached = localStorage.getItem("user");
       if (cached) {
         const parsed = JSON.parse(cached);
-        const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
+        const Back_End_URL = "http://174.129.55.24:82";
         setProfileUrl(parsed.profileUrl ? (parsed.profileUrl.startsWith("http") ? parsed.profileUrl : `${Back_End_URL}${parsed.profileUrl}`) : admin);
         setUser(parsed);
       }
@@ -72,7 +72,7 @@ function Header() {
     const handler = (e) => {
       if (e?.detail) {
         const data = e.detail;
-        const Back_End_URL = process.env.REACT_APP_BACKEND_URL;
+        const Back_End_URL = "http://174.129.55.24:82";
         setProfileUrl(data.profileUrl ? (data.profileUrl.startsWith("http") ? data.profileUrl : `${Back_End_URL}${data.profileUrl}`) : admin);
         setUser(data);
       } else {

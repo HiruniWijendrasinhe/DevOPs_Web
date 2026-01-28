@@ -24,7 +24,7 @@ pipeline {
                         script {
                             docker.build(
                                 "hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}",
-                                "--build-arg REACT_APP_BACKEND_URL=${env.REACT_APP_BACKEND_URL} frontend/my-app"
+                                "frontend/my-app"
                             )
                         }
                     }
