@@ -20,46 +20,44 @@
         state: started
         enabled: yes
 
-    - name: Ensure python3-pip is installed
+    - name: Install Docker SDK for Python (required for community.docker)
       ansible.builtin.yum:
-        name: python3-pip
+        name: python3-docker
         state: present
 
-    - name: Install Docker Python SDK (required for community.docker)
-      ansible.builtin.pip:
-        name: docker
-
-    # 🔹 Pull latest build images (FIXED)
+    # Pull frontend image
     - name: Pull frontend Docker image
       community.docker.docker_image:
         name: "{{ frontend_image }}"
         source: pull
 
+    # Pull backend image
     - name: Pull backend Docker image
       community.docker.docker_image:
         name: "{{ backend_image }}"
         source: pull
 
-    # 🔹 Create Docker network
+    # Create Docker network
     - name: Create user-defined Docker network
       community.docker.docker_network:
         name: "{{ docker_network_name }}"
         state: present
 
-    # 🔹 Remove old containers if exist
+    # Remove old frontend container
     - name: Remove old frontend container if exists
       community.docker.docker_container:
         name: frontendnew
         state: absent
         force_kill: yes
 
+    # Remove old backend container
     - name: Remove old backend container if exists
       community.docker.docker_container:
         name: backendnew
         state: absent
         force_kill: yes
 
-    # 🔹 Run backend container
+    # Run backend container
     - name: Run backend container
       community.docker.docker_container:
         name: backendnew
@@ -73,7 +71,7 @@
           - name: "{{ docker_network_name }}"
         env_file: /home/ec2-user/backend/.env
 
-    # 🔹 Run frontend container
+    # Run frontend container
     - name: Run frontend container
       community.docker.docker_container:
         name: frontendnew
