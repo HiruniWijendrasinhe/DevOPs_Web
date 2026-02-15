@@ -49,6 +49,8 @@ pipeline {
                         script {
                             docker.withRegistry('', 'ee2e2ea7-2ab9-4672-8ecd-e3a149bdbccb') {
                                 docker.image("hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}").push()
+                                docker.image("hiruniwijendrasinhe/alertfy_frontend:${env.BUILD_NUMBER}").tag("hiruniwijendrasinhe/alertfy_frontend:latest")
+                                docker.image("hiruniwijendrasinhe/alertfy_frontend:latest").push()
                             }
                         }
                     }
@@ -58,6 +60,8 @@ pipeline {
                         script {
                             docker.withRegistry('', 'ee2e2ea7-2ab9-4672-8ecd-e3a149bdbccb') {
                                 docker.image("hiruniwijendrasinhe/alertfy_backend:${env.BUILD_NUMBER}").push()
+                                docker.image("hiruniwijendrasinhe/alertfy_backend:${env.BUILD_NUMBER}").tag("hiruniwijendrasinhe/alertfy_backend:latest")
+                                docker.image("hiruniwijendrasinhe/alertfy_backend:latest").push()
                             }
                         }
                     }
