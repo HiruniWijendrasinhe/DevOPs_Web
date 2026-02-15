@@ -19,7 +19,7 @@ const handleAdd = () => {
   <div className="HomeQuote">
   <div className="HomeQuote">
   
-   <p>Empowering teams to act fast, stay informed, and stay secure</p>
+   <p>Hiruni Wijendrasinhe</p>
   </div>
 
   <button type ="button" onClick={handleAdd}>Get Started now</button>
