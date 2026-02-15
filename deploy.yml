@@ -20,13 +20,13 @@
       community.docker.docker_image:
         name: "{{ frontend_image }}"
         source: pull
-        force: yes
+        pull: yes
 
     - name: Pull backend Docker image
       community.docker.docker_image:
         name: "{{ backend_image }}"
         source: pull
-        force: yes
+        pull: yes
 
     - name: Create user-defined Docker network
       community.docker.docker_network:
