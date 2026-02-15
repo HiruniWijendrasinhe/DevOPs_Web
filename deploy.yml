@@ -1,10 +1,14 @@
+---
 - hosts: all
   become: yes
+
   vars:
-    frontend_image: "hiruniwijendrasinhe/alertfy_frontend:latest"
-    backend_image: "hiruniwijendrasinhe/alertfy_backend:latest"
+    frontend_image: "hiruniwijendrasinhe/alertfy_frontend:{{ build_number }}"
+    backend_image: "hiruniwijendrasinhe/alertfy_backend:{{ build_number }}"
+    docker_network_name: mynetwork
 
   tasks:
+
     - name: Ensure Docker is installed
       ansible.builtin.yum:
         name: docker
@@ -16,23 +20,33 @@
         state: started
         enabled: yes
 
+    - name: Ensure python3-pip is installed
+      ansible.builtin.yum:
+        name: python3-pip
+        state: present
+
+    - name: Install Docker Python SDK (required for community.docker)
+      ansible.builtin.pip:
+        name: docker
+
+    # 🔹 Pull latest build images (FIXED)
     - name: Pull frontend Docker image
       community.docker.docker_image:
         name: "{{ frontend_image }}"
         source: pull
-        pull: yes
 
     - name: Pull backend Docker image
       community.docker.docker_image:
         name: "{{ backend_image }}"
         source: pull
-        pull: yes
 
+    # 🔹 Create Docker network
     - name: Create user-defined Docker network
       community.docker.docker_network:
-        name: mynetwork
+        name: "{{ docker_network_name }}"
         state: present
 
+    # 🔹 Remove old containers if exist
     - name: Remove old frontend container if exists
       community.docker.docker_container:
         name: frontendnew
@@ -45,25 +59,29 @@
         state: absent
         force_kill: yes
 
+    # 🔹 Run backend container
     - name: Run backend container
       community.docker.docker_container:
         name: backendnew
         image: "{{ backend_image }}"
         state: started
         restart_policy: always
+        recreate: yes
         ports:
           - "82:5000"
         networks:
-          - name: mynetwork
+          - name: "{{ docker_network_name }}"
         env_file: /home/ec2-user/backend/.env
 
+    # 🔹 Run frontend container
     - name: Run frontend container
       community.docker.docker_container:
         name: frontendnew
         image: "{{ frontend_image }}"
         state: started
         restart_policy: always
+        recreate: yes
         ports:
           - "81:80"
         networks:
-          - name: mynetwork
+          - name: "{{ docker_network_name }}"
