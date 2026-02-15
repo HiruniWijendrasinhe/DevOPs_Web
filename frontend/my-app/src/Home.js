@@ -22,7 +22,7 @@ const handleAdd = () => {
    <p>Empowering teams to act fast, stay informed, and stay secure</p>
   </div>
 
-  <button type ="button" onClick={handleAdd}>Get Started</button>
+  <button type ="button" onClick={handleAdd}>Get Started now</button>
 
 
 
