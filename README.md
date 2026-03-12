@@ -1,7 +1,7 @@
-Project Title
-Alertify – Incident Management System
+**Project Title**
+#Alertify – Incident Management System
 
-Description
+**##Description**
 Alertify is a web-based incident management platform designed for 
 organizations to track and resolve technical and operational issues.
 
@@ -9,7 +9,7 @@ Employees can report incidents, and administrators assign them to
 relevant teams (Development, HR, QA). Assigned team members update 
 progress and provide comments until the issue is resolved.
 
-Features
+**##Features**
 • User authentication using JWT
 • Role-based access (Admin, Employee)
 • Incident reporting system
@@ -20,20 +20,19 @@ Features
 • Password reset with verification code
 • Department-based assignment (Development, HR, QA)
 
-Tech Stack
-Frontend
+**##Tech Stack**
+###Frontend
 
 React
 
-Backend
+###Backend
 Node.js
 Express.js
 
-Database
+###Database
 MySQL
 
-DevOps
-
+##àDevOps
 Docker
 GitHub Actions (CI)
 Jenkins (CD)
