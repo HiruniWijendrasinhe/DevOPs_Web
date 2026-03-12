@@ -1,10 +1,10 @@
-<h1 align="center">🚨 Alertify – Incident Management System</h1>
+<h1 align="center"> Alertify – Incident Management System</h1>
 
 
 
 <hr>
 
-<h2>📌 Project Overview</h2>
+<h2> Project Overview</h2>
 <p>
 <b>Alertify</b> is a web-based incident management platform designed for organizations to 
 track, manage, and resolve technical or operational issues efficiently.
@@ -18,23 +18,23 @@ update the progress and provide comments until the issue is fully resolved.
 
 <hr>
 
-<h2>✨ Key Features</h2>
+<h2> Key Features</h2>
 
 <ul>
-<li>🔐 JWT-based secure authentication</li>
-<li>👥 Role-based access control (Admin / Employee)</li>
-<li>📢 Incident reporting system</li>
-<li>📌 Admin assigns incidents to departments or teams</li>
-<li>📊 Task status tracking (To Do / In Progress / Done)</li>
-<li>💬 Progress updates and comments</li>
-<li>📄 Export incident comments as PDF</li>
-<li>🔑 Password reset with verification code</li>
-<li>🏢 Department-based task assignment (Development, HR, QA)</li>
+<li> JWT-based secure authentication</li>
+<li> Role-based access control (Admin / Employee)</li>
+<li> Incident reporting system</li>
+<li> Admin assigns incidents to departments or teams</li>
+<li> Task status tracking (To Do / In Progress / Done)</li>
+<li> Progress updates and comments</li>
+<li> Export incident comments as PDF</li>
+<li> Password reset with verification code</li>
+<li> Department-based task assignment (Development, HR, QA)</li>
 </ul>
 
 <hr>
 
-<h2>🛠 Technology Stack</h2>
+<h2> Technology Stack</h2>
 
 <h3>Frontend</h3>
 <ul>
@@ -64,7 +64,7 @@ update the progress and provide comments until the issue is fully resolved.
 
 <hr>
 
-<h2>⚙️ CI/CD Pipeline Architecture</h2>
+<h2> CI/CD Pipeline Architecture</h2>
 
 <pre>
 Developer pushes code to GitHub
@@ -83,7 +83,7 @@ Docker containers deploy the application
 <hr>
 
 
-<h2>🚀 Running the Project Locally</h2>
+<h2>Running the Project Locally</h2>
 
 <pre>
 git clone https://github.com/HiruniWijendrasinhe/DevOPs_Web
@@ -101,7 +101,7 @@ Then open: <b>http://localhost:3000</b>
 
 
 
-<h2>👩‍💻 Author</h2>
+<h2>Author</h2>
 
 <p>
 <b>Hiruni Lakshika</b><br>
