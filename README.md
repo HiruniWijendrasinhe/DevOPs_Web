@@ -85,29 +85,12 @@ Ansible configures the server
 Docker containers deploy the application
 </pre>
 
-<p align="center">
-<!-- You can replace the src with your architecture diagram image -->
-<img src="screenshots/ci-cd-architecture.png" alt="CI/CD Architecture Diagram" width="600">
-</p>
+
 
 <hr>
 
-<h2>📷 Screenshots</h2>
-<p>Add screenshots of key pages here for clarity:</p>
-<ul>
-<li>Login Page</li>
-<li>Dashboard</li>
-<li>Incident Creation</li>
-<li>Admin Assignment Panel</li>
-<li>Progress Tracking Page</li>
-</ul>
 
-<p align="center">
-<img src="screenshots/dashboard.png" alt="Dashboard Screenshot" width="400">
-<img src="screenshots/incident-page.png" alt="Incident Page Screenshot" width="400">
-</p>
 
-<hr>
 
 <h2>⚙️ Running the Project Locally</h2>
 <pre>
